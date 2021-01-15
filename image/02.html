@@ -8,7 +8,7 @@
  
 <body>
 <div id="txt">ここにデータを表示</div>             <!-- データを表示するdiv要素 -->
-<button onclick="permission_request();">動作と方向へのアクセス許可</button>
+ 
 <script>
 var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
  
@@ -31,24 +31,6 @@ function displayData() {
                   + "beta:  " + beta  + "<br>"  // y軸の値
                   + "gamma: " + gamma;          // z軸の値
 }
-
-function permission_request() {
-    if (
-         DeviceMotionEvent &&
-         DeviceMotionEvent.requestPermission &&
-         typeof DeviceMotionEvent.requestPermission === 'function'
-     ) {
-         DeviceMotionEvent.requestPermission();
-     }
-     if (
-         DeviceOrientationEvent &&
-         DeviceOrientationEvent.requestPermission &&
-         typeof DeviceOrientationEvent.requestPermission === 'function'
-     ) {
-         DeviceOrientationEvent.requestPermission();
-     }
-}
-
 </script>
 </body>
 </html>
