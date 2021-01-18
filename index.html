@@ -1,67 +1,85 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ジャイロの値を得る</title>
-<style>
-    #box{
-        width:50px;
-        height:50px;
-        background-color: blanchedalmond;
-    }
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ジャイロの値を得る</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: blanchedalmond;
+        }
+
+        #hero {
+            height: 100vh;
+            /* 全画面表示 */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-image: url('image/i3.jpg');
+            filter: blur(0px);
+        }
+    </style>
 </head>
- 
+
 <body>
-<div id="txt">ここにデータを表示</div>             <!-- データを表示するdiv要素 -->
-<button onclick="permission_request();">動作と方向へのアクセス許可</button>
-<div id="box"></div>
-<script>
-var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
-var box=document.getElementById("box")
-console.log(box)
-// ジャイロセンサの値が変化したら実行される deviceorientation イベント
-window.addEventListener("deviceorientation", (dat) => {
-    alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-    beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-    gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
-    boxwidth=(alpha%360) * 0.5 + 50
-    box.style.width=String(boxwidth)+"px"
-    // box.style.width="100px"
-    console.log(box)
-});
- 
-// 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
-var timer = window.setInterval(() => {
-    displayData();      // displayData 関数を実行
-}, 33); // 33msごとに（1秒間に約30回）
- 
-// データを表示する displayData 関数
-function displayData() {
-    var txt = document.getElementById("txt");   // データを表示するdiv要素の取得
-    txt.innerHTML = "alpha: " + alpha + "<br>"  // x軸の値
-                  + "beta:  " + beta  + "<br>"  // y軸の値
-                  + "gamma: " + gamma;          // z軸の値
-}
+    <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
+    <button onclick="permission_request();">動作と方向へのアクセス許可</button>
+    <div id="hero"></div>
+    <!-- <div id="box"></div> -->
+    <script>
+        var alpha = 0,
+            beta = 0,
+            gamma = 0; // ジャイロの値を入れる変数を3個用意
+        var box = document.getElementById("hero")
+        console.log(box)
+        // ジャイロセンサの値が変化したら実行される deviceorientation イベント
+        window.addEventListener("deviceorientation", (dat) => {
+            alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+            beta = dat.beta; // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+            gamma = dat.gamma; // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+            box.style.webkitFilter = "blur(" + String(alpha*0.05) + "px)";
+        });
 
-function permission_request() {
-    if (
-         DeviceMotionEvent &&
-         DeviceMotionEvent.requestPermission &&
-         typeof DeviceMotionEvent.requestPermission === 'function'
-     ) {
-         DeviceMotionEvent.requestPermission();
-     }
-     if (
-         DeviceOrientationEvent &&
-         DeviceOrientationEvent.requestPermission &&
-         typeof DeviceOrientationEvent.requestPermission === 'function'
-     ) {
-         DeviceOrientationEvent.requestPermission();
-     }
-}
+        // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
+        var timer = window.setInterval(() => {
+            displayData(); // displayData 関数を実行
+        }, 33); // 33msごとに（1秒間に約30回）
 
-</script>
+        // データを表示する displayData 関数
+        function displayData() {
+            var txt = document.getElementById("txt"); // データを表示するdiv要素の取得
+            txt.innerHTML = "alpha: " + alpha + "<br>" // x軸の値
+                +
+                "beta:  " + beta + "<br>" // y軸の値
+                +
+                "gamma: " + gamma; // z軸の値
+        }
+
+        function permission_request() {
+            if (
+                DeviceMotionEvent &&
+                DeviceMotionEvent.requestPermission &&
+                typeof DeviceMotionEvent.requestPermission === 'function'
+            ) {
+                DeviceMotionEvent.requestPermission();
+            }
+            if (
+                DeviceOrientationEvent &&
+                DeviceOrientationEvent.requestPermission &&
+                typeof DeviceOrientationEvent.requestPermission === 'function'
+            ) {
+                DeviceOrientationEvent.requestPermission();
+            }
+        }
+    </script>
 </body>
+
 </html>
