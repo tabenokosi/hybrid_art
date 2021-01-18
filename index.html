@@ -26,7 +26,7 @@ window.addEventListener("deviceorientation", (dat) => {
     alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
     beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
     gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
-    boxwidth=(alpha%360) * 2 + 50
+    boxwidth=(alpha%360) * 0.5 + 50
     box.style.width=String(boxwidth)+"px"
     // box.style.width="100px"
     console.log(box)
