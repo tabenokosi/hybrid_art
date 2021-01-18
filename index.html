@@ -31,7 +31,7 @@
 
 <body>
     <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
-    <button onclick="permission_request();">動作と方向へのアクセス許可</button>
+    <button id="access" onclick="permission_request();">動作と方向へのアクセス許可</button>
     <div id="hero"></div>
     <!-- <div id="box"></div> -->
     <script>
@@ -78,6 +78,8 @@
             ) {
                 DeviceOrientationEvent.requestPermission();
             }
+            var access = document.getElementById("access");
+            access.remove();
         }
     </script>
 </body>
