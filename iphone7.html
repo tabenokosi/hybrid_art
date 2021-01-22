@@ -41,7 +41,7 @@
 
 <body>
     <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
-    <button id="access" onclick="permission_request();">動作と方向へのアクセス許可1</button>
+    <button id="access" onclick="permission_request();">動作と方向へのアクセス許可2</button>
     <div id="parent">
         <div id="hero"></div>
         <div id="box"></div>
@@ -52,31 +52,25 @@
             gamma = 0; // ジャイロの値を入れる変数を3個用意
         var hero = document.getElementById("hero")
         var box = document.getElementById("box")
-        var timeout = function(){
-            alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-            beta = dat.beta; // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-            gamma = dat.gamma; // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
-            // hero.style.webkitFilter = "blur(" + String(alpha * 0.05) + "px)";
-            radius=10*Math.cos((alpha-90.0)*(Math.PI/180)*2)+10;
-            // radius=5*Math.cos((alpha-90.0)*(Math.PI/180)*2)+5;
-            console.log(radius)
-            hero.style.webkitFilter = "blur(" + radius + "px)";
-            // box.style.webkitFilter = "blur(" + radius + "px)";
-        }
-        setInterval(timeout, 500);
-
+        var timeoutId=0;
         // ジャイロセンサの値が変化したら実行される deviceorientation イベント
-        // window.addEventListener("deviceorientation", (dat) => {
-        //     alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-        //     beta = dat.beta; // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-        //     gamma = dat.gamma; // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
-        //     // hero.style.webkitFilter = "blur(" + String(alpha * 0.05) + "px)";
-        //     radius=10*Math.cos((alpha-90.0)*(Math.PI/180)*2)+10;
-        //     // radius=5*Math.cos((alpha-90.0)*(Math.PI/180)*2)+5;
-        //     console.log(radius)
-        //     hero.style.webkitFilter = "blur(" + radius + "px)";
-        //     // box.style.webkitFilter = "blur(" + radius + "px)";
-        // });
+        window.addEventListener("deviceorientation", (dat) => {
+            if (timeoutId) return;
+            timeoutId = setTimeout(function () {
+                timeoutId = 0;
+                // 処理内容
+                alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+                // beta = dat.beta; // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+                // gamma = dat.gamma; // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+                // hero.style.webkitFilter = "blur(" + String(alpha * 0.05) + "px)";
+                radius = 10 * Math.cos((alpha - 90.0) * (Math.PI / 180) * 2) + 10;
+                // radius=5*Math.cos((alpha-90.0)*(Math.PI/180)*2)+5;
+                console.log(radius)
+                hero.style.webkitFilter = "blur(" + radius + "px)";
+                // box.style.webkitFilter = "blur(" + radius + "px)";
+            }, 500);
+
+        });
 
         function permission_request() {
             if (
