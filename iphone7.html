@@ -41,7 +41,7 @@
 
 <body>
     <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
-    <button id="access" onclick="permission_request();">動作と方向へのアクセス許可6</button>
+    <button id="access" onclick="permission_request();">動作と方向へのアクセス許可7</button>
     <div id="parent">
         <div id="hero"></div>
         <div id="box"></div>
@@ -53,11 +53,27 @@
         var hero = document.getElementById("hero")
         var box = document.getElementById("box")
         var timeoutId = 0;
-        var radius=0;
+        var radius = 0;
 
+        // window.addEventListener("deviceorientation", (dat) => {
+        //     if (timeoutId) return;
+        //     timeoutId = setTimeout(function () {
+        //         alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+        //         if (alpha <= 90.0) {
+        //             radius = alpha * 0.1
+        //         } else if (alpha <= 180.0) {
+        //             radius = 9 - (alpha - 90) * 0.1
+        //         } else if (alpha <= 270.0) {
+        //             radius = (alpha - 180) * 0.1
+        //         } else {
+        //             radius = 9 - (alpha - 270) * 0.1
+        //         }
+        //         console.log(radius)
+        //         hero.style.webkitFilter = "blur(" + radius + "px)";
+        //     }, 500);
+
+        // });
         window.addEventListener("deviceorientation", (dat) => {
-            if (timeoutId) return;
-            timeoutId = setTimeout(function () {
             alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
             if(alpha<=90.0){
             radius = alpha*0.1
@@ -73,26 +89,7 @@
             }
             console.log(radius)
             hero.style.webkitFilter = "blur(" + radius + "px)";
-            }, 500);
-
         });
-        // window.addEventListener("deviceorientation", (dat) => {
-        //     alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-        //     if(alpha<=90.0){
-        //     radius = alpha*0.1
-        //     }
-        //     else if(alpha<=180.0){
-        //         radius = 9-(alpha-90)*0.1
-        //     }
-        //     else if(alpha<=270.0){
-        //         radius = (alpha-180)*0.1
-        //     }
-        //     else{
-        //         radius = 9-(alpha-270)*0.1
-        //     }
-        //     console.log(radius)
-        //     hero.style.webkitFilter = "blur(" + radius + "px)";
-        // });
 
         function permission_request() {
             if (
