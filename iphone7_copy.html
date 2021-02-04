@@ -33,8 +33,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
-            /* background-image: url('image/i3.jpg'); */
-            background-image: url('image/banzai_school.png');
+            background-image: url('image/i3.jpg');
+            /* background-image: url('image/banzai_school.png'); */
             filter: blur(0px);
         }
     </style>
@@ -43,16 +43,18 @@
 <body>
     <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
     <button id="access" onclick="permission_request();">動作と方向へのアクセス許可7</button>
-    <div id="parent">
+    <!-- <div id="parent">
         <div id="hero"></div>
         <div id="box"></div>
-    </div>
+    </div> -->
+    <img id="lion" src="image/i3.jpg" style="width: 100%; height: 500px;"/>
     <script>
         var alpha = 0,
             beta = 0,
             gamma = 0; // ジャイロの値を入れる変数を3個用意
         var hero = document.getElementById("hero")
         var box = document.getElementById("box")
+        var lion = document.getElementById("lion")
         var timeoutId = 0;
         var radius = 0;
 
@@ -89,7 +91,7 @@
                 radius = 9-(alpha-270)*0.1
             }
             console.log(radius)
-            hero.style.webkitFilter = "blur(" + radius + "px)";
+            lion.style.webkitFilter = "blur(" + radius + "px)";
         });
 
         function permission_request() {
