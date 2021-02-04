@@ -49,6 +49,7 @@
         <div id="box"></div>
     </div>
     <script>
+        var flag=0;
         var alpha = 0,
             beta = 0,
             gamma = 0; // ジャイロの値を入れる変数を3個用意
@@ -96,8 +97,14 @@
 
         // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
         var timer = window.setInterval(() => {
+            if (flag==1){
+                flag=0
+            }
+            else{
+                flag=1
+            }
             displayData(); // displayData 関数を実行
-        }, 133); // 33msごとに（1秒間に約30回）
+        }, 333); // 33msごとに（1秒間に約30回）
 
         // データを表示する displayData 関数
         function displayData() {
@@ -106,6 +113,12 @@
 
             var txt = document.getElementById("txt"); // データを表示するdiv要素の取得
             txt.innerHTML = "alpha: " + alpha + "<br>" // x軸の値
+            if (flag==1){
+                hero.style.backgroundImage = "url(image/i3.jpg)"
+            }
+            else{
+                hero.style.backgroundImage = "url(image/black.jpg)"
+            }
         }
 
         function permission_request() {
