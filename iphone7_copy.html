@@ -43,7 +43,6 @@
 <body>
     <!-- <div id="txt">ここにデータを表示</div> データを表示するdiv要素 -->
     <button id="access" onclick="permission_request();">動作と方向へのアクセス許可7</button>
-    <p id="txt"></p>
     <div id="parent">
         <div id="hero"></div>
         <div id="box"></div>
@@ -92,22 +91,6 @@
             console.log(radius)
             hero.style.webkitFilter = "blur(" + radius + "px)";
         });
-
-
-        // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
-        var timer = window.setInterval(() => {
-            displayData(); // displayData 関数を実行
-        }, 33); // 33msごとに（1秒間に約30回）
-
-        // データを表示する displayData 関数
-        function displayData() {
-            // console.log('display');
-            // console.log(aX);
-
-            var txt = document.getElementById("txt"); // データを表示するdiv要素の取得
-            txt.innerHTML = "alpha: " + alpha + "<br>" // x軸の値
-        }
-
 
         function permission_request() {
             if (
