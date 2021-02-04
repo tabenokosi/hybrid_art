@@ -112,11 +112,6 @@
 
         // データを表示する displayData 関数
         function displayData() {
-            // console.log('display');
-            // console.log(aX);
-
-            var txt = document.getElementById("txt"); // データを表示するdiv要素の取得
-            txt.innerHTML = "alpha: " + alpha + "<br>" // x軸の値
 
             for(var i=0 ; i<10; i++){
                 if ( ( (i*9<alpha) && (alpha<(i+1)*9) ) || ((180-(i+1)*9 <alpha) && (alpha< 180-i*9)) || ((180+i*9<alpha) && (alpha<180+(i+1)*9)) || ((360-(i+1)*9 <alpha) && (alpha< 360-i*9) )){
