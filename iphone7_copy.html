@@ -48,6 +48,7 @@
         <div id="box"></div>
     </div> -->
     <img id="lion" src="image/i3.jpg" style="width: 100%; height: 500px;"/>
+    <img id="black" src="image/black.jpg" style="width: 100%; height: 500px;" />
     <script>
         var alpha = 0,
             beta = 0,
@@ -93,7 +94,35 @@
             console.log(radius)
             lion.style.webkitFilter = "blur(" + radius + "px)";
         });
+        var timer = window.setInterval(() => {
+            if(flag==1){
+                flag=0;
+            }
+            else{
+                flag=1
+            }
+            
+            displayData(); // displayData 関数を実行
+        }, 333); // 33msごとに（1秒間に約30回）
 
+        // データを表示する displayData 関数
+        function displayData() {
+            // // console.log('display');
+            // // console.log(aX);
+
+            // var txt = document.getElementById("txt"); // データを表示するdiv要素の取得
+            // txt.innerHTML = "alpha: " + alpha + "<br>" // x軸の値
+            if (flag==1){
+                lion.style.display = 'block';
+                black.style.display = 'none';
+            //     hero.style.backgroundImage = "url(image/i3.jpg)"
+            }
+            else{
+                lion.style.display = 'none';
+                black.style.display = 'block';
+            //     hero.style.backgroundImage = "url(image/black.jpg)"
+            }
+        }
         function permission_request() {
             if (
                 DeviceMotionEvent &&
