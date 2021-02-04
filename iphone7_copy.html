@@ -81,16 +81,16 @@
         window.addEventListener("deviceorientation", (dat) => {
             alpha = dat.alpha; // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
             if(alpha<=90.0){
-            radius = alpha*0.1
+            radius = alpha*0.2
             }
             else if(alpha<=180.0){
-                radius = 9-(alpha-90)*0.1
+                radius = 18-(alpha-90)*0.2
             }
             else if(alpha<=270.0){
-                radius = (alpha-180)*0.1
+                radius = (alpha-180)*0.2
             }
             else{
-                radius = 9-(alpha-270)*0.1
+                radius = 18-(alpha-270)*0.2
             }
             console.log(radius)
             lion.style.webkitFilter = "blur(" + radius + "px)";
